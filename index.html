@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title></title>
+    <style>
+        .vermelho {
+            background-color: red;
+        }
+        .azul {
+            background-color: blue;
+        }
+        .verde {
+            background-color: green;
+        }
+        .textoBranco {
+            color: white;
+        }
+        .textoAmarelo {
+            color: yellow;
+        }
+        .textoPreto {
+            color: black;
+        }
+        .destaque {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Manipulando Css com VueJS</h1>
+        <p :class="[estilo, {destaque: eDestaque}]" :style="forma"
+        >
+            definindo classes com array
+        </p>
+        <button @click="estilo = estilo1" >estilo 1</button>
+        <button @click="estilo = estilo2" >estilo 2</button>
+        <button @click="estilo = estilo3" >estilo 3</button>
+        <button @click="eDestaque = !eDestaque">
+            <span 
+            v-text="eDestaque ? 'Remover Destaque' : 'Aplicar Destaque'"
+            ></span>
+        </button>
+    </div>
+
+
+    <script>
+        const vm = new Vue ({
+            el: "#app",
+            data: {
+                estilo: '',
+                estilo1: {
+                    vermelho: true,
+                    textoBranco: true,
+                },
+                estilo2: {
+                    azul: true,
+                    textoAmarelo: true,
+                },
+                estilo3: {
+                    verde: true,
+                    textoPreto: true,
+                },
+                eDestaque: false,
+            },
+            
+            computed: {
+                    forma() {
+                        let width = Math.floor(Math.random() * 100 + 100);
+                        let height = Math.floor(width * 0.8);
+                        let fontSize = 16;
+                        let horas = new Date();
+                        if (horas.getHours() >= 10) {
+                            fontSize = 20;
+                        };
+
+                        return {
+                            width: width + "px",
+                            height: height + "px",
+                            padding: 10 + "px",
+                            fontSize: fontSize + "px",
+                        };
+                    },
+           
+            },
+        });
+    </script>
+</body>
+</html>
